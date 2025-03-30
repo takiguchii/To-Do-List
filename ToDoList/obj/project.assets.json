@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/home/takiguchi/.nuget/packages/": {}
+    "/home/alexandre-takiguchi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/takiguchi/Documentos/PlataformaDesenvolvimentoP1/To-Do-List/ToDoList/ToDoList.csproj",
+      "projectUniqueName": "/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/ToDoList.csproj",
       "projectName": "ToDoList",
-      "projectPath": "/home/takiguchi/Documentos/PlataformaDesenvolvimentoP1/To-Do-List/ToDoList/ToDoList.csproj",
-      "packagesPath": "/home/takiguchi/.nuget/packages/",
-      "outputPath": "/home/takiguchi/Documentos/PlataformaDesenvolvimentoP1/To-Do-List/ToDoList/obj/",
+      "projectPath": "/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/ToDoList.csproj",
+      "packagesPath": "/home/alexandre-takiguchi/.nuget/packages/",
+      "outputPath": "/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/takiguchi/.nuget/NuGet/NuGet.Config"
+        "/home/alexandre-takiguchi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

@@ -13,3 +13,17 @@
 /home/takiguchi/Documentos/PlataformaDesenvolvimentoP1/To-Do-List/ToDoList/obj/Debug/net9.0/ToDoList.pdb
 /home/takiguchi/Documentos/PlataformaDesenvolvimentoP1/To-Do-List/ToDoList/obj/Debug/net9.0/ToDoList.genruntimeconfig.cache
 /home/takiguchi/Documentos/PlataformaDesenvolvimentoP1/To-Do-List/ToDoList/obj/Debug/net9.0/ref/ToDoList.dll
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/bin/Debug/net9.0/ToDoList
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/bin/Debug/net9.0/ToDoList.deps.json
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/bin/Debug/net9.0/ToDoList.runtimeconfig.json
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/bin/Debug/net9.0/ToDoList.dll
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/bin/Debug/net9.0/ToDoList.pdb
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ToDoList.GeneratedMSBuildEditorConfig.editorconfig
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ToDoList.AssemblyInfoInputs.cache
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ToDoList.AssemblyInfo.cs
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ToDoList.csproj.CoreCompileInputs.cache
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ToDoList.dll
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/refint/ToDoList.dll
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ToDoList.pdb
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ToDoList.genruntimeconfig.cache
+/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/Debug/net9.0/ref/ToDoList.dll
