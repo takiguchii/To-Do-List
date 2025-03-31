@@ -7,6 +7,7 @@ namespace ToDoList
     class Program
     { 
         static List<Usuario> usuarios = new List<Usuario>(); 
+        
         static string Menu()
         {
             Console.WriteLine("---------------------------------------");
@@ -15,7 +16,7 @@ namespace ToDoList
             Console.WriteLine("* Cadastrar um novo Responsável/Tarefa");
             Console.WriteLine("* Deletar uma tarefa");
             Console.WriteLine("* Atualizar status de uma tarefa");
-            Console.WriteLine("* listar Tarefas/Usuarios");
+            Console.WriteLine("* Listar Tarefas/Usuarios");
             Console.WriteLine("* Sair");
             Console.WriteLine("---------------------------------------");
             Console.Write("Escolha uma opção: \n");
@@ -23,7 +24,7 @@ namespace ToDoList
             return Console.ReadLine().Trim().ToLower(); 
         }
         
-        static void Cadastrar() //função concluida 
+        static void Cadastrar()
         {
             Console.WriteLine("Bem-vindo ao sistema de cadastro de usuário!");
             Console.Write("Digite o nome: ");
@@ -38,52 +39,65 @@ namespace ToDoList
             Usuario novoUsuario = new Usuario(nome, email, tarefa);
             usuarios.Add(novoUsuario);
 
-            Console.WriteLine("\nInformações do Usuário:");
-            Console.WriteLine($"Nome: {novoUsuario.Nome}");
-            Console.WriteLine($"Email: {novoUsuario.Email}");
-            Console.WriteLine($"Tarefa: {novoUsuario.Tarefa}");
             Console.WriteLine("\n✅ Usuário cadastrado com sucesso!");
-
         }
 
-        static string Listar(string menu) // função concluida 
+        static void Listar()
         {
-            Console.Write("Deseja Listar uma  tarefa ou um usuario? ");
-            string Select = Console.ReadLine();
-            if (Select == "usuario")
+            if (usuarios.Count == 0)
             {
-                foreach (var usuario in usuarios)
-                {
-                    Console.WriteLine("----------------------");
-                    Console.WriteLine($"Nome: {usuario.Nome}");
-                    Console.WriteLine($"Email: {usuario.Email}");
-                    Console.WriteLine($"Tarefa: {usuario.Tarefa}");
-                    Console.WriteLine("----------------------");
-                    Console.WriteLine("Deseja Conntinuar?, sim ou não ? ");
-                    string Select2 = Console.ReadLine();
-                    if (Select2 == "sim")
-                    {
-                        Console.WriteLine("Ok, continuando...");
-                    }
-                    else
-                    {
-                        break;
-                    }
+                Console.WriteLine("Nenhum usuário cadastrado ainda!");
+                return;
+            }
+            
+            Console.WriteLine("Deseja listar uma tarefa ou um usuário?");
+            string select = Console.ReadLine().ToLower();
 
+            if (select == "usuario")
+            {
+                while (true)
+                {
+                    {
+
+                    }
+                    foreach (var usuario in usuarios)
+                    {
+                        Console.WriteLine("----------------------");
+                        Console.WriteLine($"Nome: {usuario.Nome}");
+                        Console.WriteLine($"Email: {usuario.Email}");
+                        Console.WriteLine($"Tarefa: {usuario.Tarefa}");
+                        Console.WriteLine("----------------------");
+                    }
+                    Console.Write("Usuarios Foram Verificados? (sim/não)");
+ 
                 }
             }
-            else if (Select == "tarefa")
+            else if (select == "tarefa")
             {
-                Console.WriteLine("Ainda não ta pronto ");
+                Console.WriteLine("Ainda não está pronto.");
             }
-
-            return menu;
+            else
+            {
+                Console.WriteLine("Opção inválida.");
+            }
         }
 
         static void Deletar()
         {
-            Console.Write("Digite a tarefa que deseja deletar: ");
-            Console.ReadLine(); 
+            Console.Write("Digite o nome do usuário que deseja deletar: ");
+            string nome = Console.ReadLine();
+            
+            // O find percorre toda a lista de usuarios e busca pelo o noem do usuario/ 
+            Usuario usuarioParaRemover = usuarios.Find(usuario => usuario.Nome == nome);
+            if (usuarioParaRemover != null)// se for diferente de vazio / qualquer nome especifico funciona 
+            {
+                usuarios.Remove(usuarioParaRemover);
+                Console.WriteLine("Usuário removido com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Usuário não encontrado!");
+            }
         }
 
         static void Atualizar()
@@ -100,7 +114,7 @@ namespace ToDoList
                     Cadastrar();
                     break;
                 case "listar":
-                    Listar(menu);
+                    Listar();
                     break;
                 case "deletar":
                     Deletar();
@@ -116,6 +130,7 @@ namespace ToDoList
                     break;
             }
         }
+
         static void Main()
         {
             string menu;
@@ -127,4 +142,3 @@ namespace ToDoList
         }
     }
 }
-
