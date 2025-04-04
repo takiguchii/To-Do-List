@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/ToDoList.csproj",
+      "projectUniqueName": "/home/alexandre-takiguchi/Documentos/ToDoList/ToDoList.csproj",
       "projectName": "ToDoList",
-      "projectPath": "/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/ToDoList.csproj",
+      "projectPath": "/home/alexandre-takiguchi/Documentos/ToDoList/ToDoList.csproj",
       "packagesPath": "/home/alexandre-takiguchi/.nuget/packages/",
-      "outputPath": "/home/alexandre-takiguchi/Documentos/To-Do-List-main/ToDoList/obj/",
+      "outputPath": "/home/alexandre-takiguchi/Documentos/ToDoList/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/alexandre-takiguchi/.nuget/NuGet/NuGet.Config"
