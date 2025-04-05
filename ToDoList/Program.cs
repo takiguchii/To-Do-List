@@ -5,12 +5,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        string opcao;
-        do
-        {
-            opcao = Menu.ImprimirMenu(); 
-            Menu.SelectFunction(opcao);  
-                
-        } while (opcao != "sair");
+        List<Tasks> tarefas = new List<Tasks>();
+        List<Author> authors = new List<Author>();
+        
+        Menu.ImprimirMenu(ref authors, ref tarefas);
+        
     }
 }

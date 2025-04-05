@@ -7,20 +7,38 @@ namespace ToDoList.Models
         private string Email { get; set; }
         private int AssignedTasks { get; set; }
         
-
-        public Author(string nome, string email, string tarefa)
+        public Author()
         {
-            Nome = nome;
-            Email = email;
             AssignedTasks = 0;
-
+        } 
+        
+        public void CreateAuthor()
+        {
+            SetName();
+            SetEmail();
         }
-
+        private void SetName()
+        {
+            Console.Write("Digite o nome do author: ");
+            Nome = Console.ReadLine();
+        }
+        private void SetEmail()
+        {
+            Console.Write("Digite o email do author: ");
+            Email = Console.ReadLine();
+        }
+        public string GetName()
+        {
+            return Nome;
+        }
+        public string GetEmail()
+        {
+            return Email;
+        }
         public void AddTask()
         {
             AssignedTasks++;
         }
-
         public int GetAssignedTasks()
         {
             return this.AssignedTasks;

@@ -18,7 +18,7 @@ public class Tasks {
     private Status Status { get; set; }
     private Priority Priority { get; set; }
     private DateTime Date { get; set; }
-    private Author Author { get; set; }
+    private Author Author { get; set; } = null!;
 
     /* Registrar um título para a tarefa */
     public void RegisterTitle() {
@@ -91,39 +91,47 @@ public class Tasks {
     }
 
     /* Adiciona um responsável para a tarefa */
-    public void AddAuthor(ref Author author) {
+    public void AddAuthor(Author author) {
         if (author.GetAssignedTasks() >= 3) {
             Console.WriteLine("Não é possível adicionar uma nova tarefa para este autor!");
             return;
         }
         author.AddTask();
+        Author = author;
     }
 
     /* Cria uma tarefa */
-    public void CreateTask(Author author) {
+    public void CreateTask() {
         RegisterTitle();
         RegisterDescription();
         RegisterStatus();
         RegisterPriority();
         RegisterLimitDate();
-        AddAuthor(ref author);
+        
     }
-
     public string GetTitle() {
         return Title;
     }
     public string GetDescription() {
         return Description;
     }
-    public string GetStatus() {
-        return Status.ToString();
+    public int GetStatus() {
+        return Convert.ToInt32(this.Status);
     }
-    public string GetPriority() {
-        return Priority.ToString();
+    public int GetPriority() {
+        return Convert.ToInt32(this.Priority);
     }
     public string GetDate() {
         return Date.ToString("yyyy-MM-dd");
     }
+
+
+
+    public Author GetAuthor()
+    {
+        return Author;
+    }
+    
 }
 
 
