@@ -6,17 +6,20 @@ public class Menu
     {
         while (true)
         {
-            string separation = "===========================================================";
-            Console.WriteLine(separation);
+            PrintSeparation();
             Console.WriteLine("O que Deseja Selecionar?");
-            Console.WriteLine(separation);
-            Console.WriteLine("* Cadastrar, Deletar, Lista, Atualizar ,Sair");
-            Console.WriteLine(separation);
+            PrintSeparation();
+            Console.WriteLine("* Cadastrar, Deletar, Listar , Atualizar ,Sair");
+            PrintSeparation();
             Console.Write("Escolha uma opção: \n");
-            Console.WriteLine(separation);
+            PrintSeparation();
             string option = Console.ReadLine();
             option = option.ToLower();
             string selectFunction = SelectFunction(option);
+            if (selectFunction == "sair")
+            {
+                break;
+            }
             FilterFunction(selectFunction, option, authors, tasks);
         }
     }
@@ -38,22 +41,54 @@ public class Menu
                 selectFunction = Console.ReadLine();
                 return selectFunction;
             case "sair":
-                return null;
+                return selectFunction = "sair";
         }
         return selectFunction;
     }
-    public static void PrintSelectFunction(string option)
+    public static void PrintSelectFunction(string option) //Imprimi na tela
     {
-        Console.Write($"Deseja Cadastrar o {option} Author or Tarefa?");
+        PrintSeparation();
+        Console.Write($"Deseja Cadastrar o {option} Author or Tarefa?: ");
+        PrintSeparation();
     }
-    public static void FilterFunction(string selectFunction, string option, List<Author> authors, List<Tasks> tasks)
+
+    public static void PrintSelectFunctionListar() // Imprimi na tela 
+    {
+        PrintSeparation();
+        Console.Write("Deseja Listar Todas as Tarefas? ou Tarefas Concluidas/Pendentes ?: ");
+        PrintSeparation();
+    }
+
+    public static void PrintSeparation()
+    {
+        Console.WriteLine("===========================================================");
+    }
+    public static void SelectFunctionListar(List<Tasks> tasks) //Faz a Seleção dos tipos de impreções da tarefa 
+    {
+        string SelectListar = Console.ReadLine();
+        SelectListar = SelectListar.ToLower();
+        
+        switch (SelectListar)
+        {
+            case "todas" :
+                ListarTarefa(ref tasks);
+                break;
+            case "concluidas":
+                ListarTarefaConcluida(ref tasks);
+                break;
+            case "pendentes":
+                ListarTarefaPendente(ref tasks);
+                break;
+        }
+    }
+    public static void FilterFunction(string selectFunction, string option, List<Author> authors, List<Tasks> tasks) // Filtra as opçoes selecionadas pelo usuario 
     {
         switch (selectFunction)
         {
             case "author":
                 if (option == "cadastrar")
                 {
-                    CadastrarAuthor(ref authors);
+                    CadastrarAuthor(ref authors); 
                 }
                 else if (option == "deletar")
                 {
@@ -79,7 +114,8 @@ public class Menu
                 }
                 else if (option == "listar")
                 {
-                    //ListarTarefa();
+                    PrintSelectFunctionListar();
+                    SelectFunctionListar(tasks);
                 }
                 else if (option == "atualizar")
                 {
@@ -95,8 +131,20 @@ public class Menu
     {
         Tasks tarefa = new Tasks();
         tarefa.CreateTask();
-        tarefa.AddAuthor(PinAuthorToTask(ref authors));
-        tarefas.Add(tarefa);
+        
+        //Verifica se Possui um author ja registrado, caso não tenha chama a função "Adiciocionar Author"
+        if (authors.Count > 0)
+        {
+            tarefa.AddAuthor(PinAuthorToTask(ref authors));
+            tarefas.Add(tarefa);
+        }
+        else
+        {
+            CadastrarAuthor(ref authors);
+            tarefa.AddAuthor(PinAuthorToTask(ref authors));
+            tarefas.Add(tarefa);
+        }
+
     }
     public static void CadastrarAuthor(ref List<Author> authors)
     {
@@ -120,4 +168,77 @@ public class Menu
         int SelectAuthor = Convert.ToInt32(Console.ReadLine());
         return authors[SelectAuthor];
     } 
+    
+    
+    //---------------------------------------------------------------------------------------------------------------------
+    
+    //- Listar tarefa
+        public static void ListarTarefa(ref List<Tasks> tasks)
+        {
+            foreach (Tasks task in tasks)
+            {
+                Console.WriteLine($"tarefa:\n");
+                Console.WriteLine($"Nome: {task.GetTitle()}");
+                Console.WriteLine($"Descricao: {task.GetDescription()}");
+                Console.WriteLine($"Data de entrega: {task.GetDate()}");
+                Console.WriteLine($"Esta tarefa esta com o status: {ConvertStatusToString(task.GetStatus())}");
+                Console.WriteLine($"Esta tarefa esta na prioridade: {ConvertPriorityToString(task.GetPriority())}");
+                Console.WriteLine($"Essa tarefa é do Author {(task.GetAuthor()).GetName()}");
+                Console.WriteLine($"\n");
+            }
+        }
+        // listar tarefa concluida
+        public static void ListarTarefaConcluida(ref List<Tasks> tasks)
+        {
+            foreach (Tasks task in tasks)
+            {
+                if (((Status)task.GetStatus()) == Status.Done)
+                {
+                    Console.WriteLine($"tarefa:\n");
+                    Console.WriteLine($"Nome: {task.GetTitle()}");
+                    Console.WriteLine($"Descricao: {task.GetDescription()}");
+                    Console.WriteLine($"Data de entrega: {task.GetDate()}");
+                    Console.WriteLine($"Esta tarefa esta com o status: {ConvertStatusToString(task.GetStatus())}");
+                    Console.WriteLine($"Esta tarefa esta na prioridade: {ConvertPriorityToString(task.GetPriority())}");
+                    Console.WriteLine($"\n");
+                }
+            }
+        }
+        // listar tarefa pendente
+        public static void ListarTarefaPendente(ref List<Tasks> tasks)
+        {
+            foreach (Tasks task in tasks)
+            {
+                if (((Status)task.GetStatus()) == Status.InProgress || ((Status)task.GetStatus()) == Status.Todo)
+                {
+                    Console.WriteLine($"tarefa:\n");
+                    Console.WriteLine($"Nome: {task.GetTitle()}");
+                    Console.WriteLine($"Descricao: {task.GetDescription()}");
+                    Console.WriteLine($"Data de entrega: {task.GetDate()}");
+                    Console.WriteLine($"Esta tarefa esta com o status: {ConvertStatusToString(task.GetStatus())}");
+                    Console.WriteLine($"Esta tarefa esta na prioridade: {ConvertPriorityToString(task.GetPriority())}");
+                    Console.WriteLine($"\n");
+                }
+            }
+        }
+        private static string ConvertStatusToString(int status)
+        {
+            switch ((Status)status)
+            {
+                case Status.Todo: return "A Fazer";
+                case Status.InProgress: return "Em Processo";
+                case Status.Done: return "Finalizado";
+                default: return "Error";
+            }
+        }
+        private static string ConvertPriorityToString(int priority)
+        {
+            switch ((Priority)priority)
+            {
+                case Priority.Low: return "Baixo";
+                case Priority.Medium: return "Medio";
+                case Priority.High: return "Alto";
+                default: return "Error";
+            }
+        }
 }
