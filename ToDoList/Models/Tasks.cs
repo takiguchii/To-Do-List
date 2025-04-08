@@ -13,8 +13,8 @@ enum Priority {
 }
 
 public class Tasks {
-    private string Title { get; set; }
-    private string Description { get; set; }
+    private string Title { get; set; } = String.Empty;
+    private string Description { get; set; } = String.Empty;
     private Status Status { get; set; }
     private Priority Priority { get; set; }
     private DateTime Date { get; set; }
@@ -22,24 +22,40 @@ public class Tasks {
 
     /* Registrar um título para a tarefa */
     public void RegisterTitle() {
-        Console.Write("Digite o título da tarefa: ");
-        Title = Console.ReadLine();
+        string title = String.Empty;
+        while (true) {
+            Console.Write("Digite o título da tarefa: ");
+            title = Console.ReadLine();
+            if (title != String.Empty) {
+                SetTitle(title);
+                return;
+            }
+            Console.WriteLine("Digite um título válido!");
+        }
     }
-
     /* Registrar uma descrição para a tarefa */
     public void RegisterDescription() {
-        Console.Write("Digite a descrição da tarefa: ");
-        Description = Console.ReadLine();
+        string description = String.Empty;
+        while (true) {
+            Console.Write("Digite a descrição da tarefa: ");
+            description = Console.ReadLine();
+            if (description != String.Empty) {
+                SetDescription(description);
+                return;
+            }
+            Console.WriteLine("Digite uma descrição válida!");
+        }
     }
-
     /* Registrar o status para a tarefa */
     public void RegisterStatus() {
         int statusNumber = -1;
         while(statusNumber < 0 || statusNumber > 2) {
             Console.Write("Digite o status da tarefa (0- A fazer, 1- Em andamento, 2- Concluída): ");
             statusNumber = Convert.ToInt32(Console.ReadLine());
+            if (statusNumber >= 0 && statusNumber <= 2) break;
+            Console.WriteLine("Digite um status válido!");
         }
-        Status = (Status)Enum.ToObject(typeof(Status), statusNumber);
+        SetStatus(statusNumber);
     }
 
     /* Registar a prioridade para a tarefa */
@@ -48,8 +64,10 @@ public class Tasks {
         while (priorityNumber < 0 || priorityNumber > 2) {
             Console.Write("Digite a prioridade da tarefa (0- Baixa, 1- Média, 2- Alta): ");
             priorityNumber = Convert.ToInt32(Console.ReadLine());
+            if(priorityNumber >= 0 && priorityNumber <= 2) break;
+            Console.WriteLine("Digite uma prioridade válida!");
         }
-        Priority = (Priority)Enum.ToObject(typeof(Priority), priorityNumber);
+        SetPriority(priorityNumber);
     }
 
     /* Registrar a data limite para a tarefa */
@@ -74,7 +92,7 @@ public class Tasks {
                 }
                 month++;
             }
-            Date = new DateTime(year, month, day);
+            SetDate(day, month, year);
         } while (LimitToDate());
     }
 
@@ -89,6 +107,23 @@ public class Tasks {
         }
         return false;
     }
+    public void AttachAuthorToTask(ref List<Author> authors) {
+        if (authors.Count == 0) {
+            Console.WriteLine("Vejo que não há nenhum autor registrado, adicione um para anexar a tarefa.");
+            Menu.RegisterAuthor(ref authors);
+        }
+        while (true) {
+            Console.WriteLine($"Qual autor você deseja anexar a tarefa?");
+            Menu.ListAuthor(ref authors);
+            Console.Write("> ");
+            int selectAuthor = Convert.ToInt32(Console.ReadLine());
+            if (selectAuthor >= 0 && selectAuthor <= authors.Count) {
+                AddAuthor(authors[selectAuthor]);
+                return;
+            }
+            Console.WriteLine($"Autor inválido! Por favor anexe um autor existente.");
+        }
+    } 
 
     /* Adiciona um responsável para a tarefa */
     public void AddAuthor(Author author) {
@@ -97,17 +132,72 @@ public class Tasks {
             return;
         }
         author.AddTask();
-        Author = author;
+        SetAutor(author);
     }
 
     /* Cria uma tarefa */
-    public void CreateTask() {
+    public void CreateTask(ref List<Author> authors) {
         RegisterTitle();
         RegisterDescription();
         RegisterStatus();
         RegisterPriority();
         RegisterLimitDate();
-        
+        AttachAuthorToTask(ref authors);
+    }
+
+    public void Info() {
+        Console.WriteLine($"Nome: {GetTitle()}");
+        Console.WriteLine($"Descricao: {GetDescription()}");
+        Console.WriteLine($"Data de entrega: {GetDate()}");
+        Console.WriteLine($"Esta tarefa esta com o status: {ConvertStatusToString()}");
+        Console.WriteLine($"Esta tarefa esta na prioridade: {ConvertPriorityToString()}");
+        Console.WriteLine($"Essa tarefa é do Author {Author.GetName()}");
+    }
+    public string ConvertStatusToString()
+    {
+        switch(Status) {
+            case Status.Todo: return "A Fazer";
+            case Status.InProgress: return "Em Processo";
+            case Status.Done: return "Finalizado";
+            default: return "Error";
+        }
+    }
+    public string ConvertPriorityToString()
+    {
+        switch(Priority) {
+            case Priority.Low: return "Baixo";
+            case Priority.Medium: return "Medio";
+            case Priority.High: return "Alto";
+            default: return "Error";
+        }
+    }
+
+    private string ConvertDateToString() {
+        return Date.ToString("dd/MM/yyyy");
+    }
+
+    public void SetTitle(string title) {
+        Title = title;
+    }
+
+    public void SetDescription(string description) {
+        Description = description;
+    }
+
+    public void SetStatus(int status) {
+        Status = (Status)status;
+    }
+
+    public void SetPriority(int priority) {
+        Priority = (Priority)priority;
+    }
+
+    public void SetDate(int day, int month, int year) {
+        Date = new DateTime(year, month, day);
+    }
+
+    public void SetAutor(Author author) {
+        Author = author;
     }
     public string GetTitle() {
         return Title;
@@ -116,22 +206,16 @@ public class Tasks {
         return Description;
     }
     public int GetStatus() {
-        return Convert.ToInt32(this.Status);
+        return Convert.ToInt32(Status);
     }
     public int GetPriority() {
-        return Convert.ToInt32(this.Priority);
+        return Convert.ToInt32(Priority);
     }
-    public string GetDate() {
-        return Date.ToString("yyyy-MM-dd");
+    public DateTime GetDate() {
+        return Date;
     }
-
-
-
     public Author GetAuthor()
     {
         return Author;
     }
-    
 }
-
-

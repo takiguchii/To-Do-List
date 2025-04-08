@@ -8,25 +8,24 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/home/alexandre-takiguchi/.nuget/packages/": {}
+    "/home/miijin/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alexandre-takiguchi/Documentos/ToDoList/ToDoList.csproj",
+      "projectUniqueName": "/home/miijin/Documents/dev/To-Do-List/ToDoList/ToDoList.csproj",
       "projectName": "ToDoList",
-      "projectPath": "/home/alexandre-takiguchi/Documentos/ToDoList/ToDoList.csproj",
-      "packagesPath": "/home/alexandre-takiguchi/.nuget/packages/",
-      "outputPath": "/home/alexandre-takiguchi/Documentos/ToDoList/obj/",
+      "projectPath": "/home/miijin/Documents/dev/To-Do-List/ToDoList/ToDoList.csproj",
+      "packagesPath": "/home/miijin/.nuget/packages/",
+      "outputPath": "/home/miijin/Documents/dev/To-Do-List/ToDoList/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/alexandre-takiguchi/.nuget/NuGet/NuGet.Config"
+        "/home/miijin/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -45,7 +44,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -66,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.104/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

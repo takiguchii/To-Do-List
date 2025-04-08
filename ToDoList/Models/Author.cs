@@ -1,50 +1,58 @@
-namespace ToDoList.Models
+namespace ToDoList.Models;
 
-{
-    public class Author
-    {
-        private string Nome { get; set; }
-        private string Email { get; set; }
-        private int AssignedTasks { get; set; }
-        
-        public Author()
-        {
-            AssignedTasks = 0;
-        } 
-        
-        public void CreateAuthor()
-        {
-            SetName();
-            SetEmail();
+public class Author {
+    private string Name { get; set; } = string.Empty;
+    private string Email { get; set; } = string.Empty;
+    private int AssignedTasks { get; set; } = 0;
+
+    public void RegisterName() {
+        string name = String.Empty;
+        while (true) {
+            Console.Write("Digite o nome do autor: ");
+            name = Console.ReadLine();
+            if (name != String.Empty) {
+                SetName(name);
+                return;
+            }
+            Console.WriteLine("Digite um nome válido!");
         }
-        private void SetName()
-        {
-            Console.Write("Digite o nome do author: ");
-            Nome = Console.ReadLine();
+    }
+
+    public void RegisterEmail() {
+        string email = String.Empty;
+        while (true) {
+            Console.Write("Digite o e-mail do autor: ");
+            email = Console.ReadLine();
+            if (email != String.Empty) {
+                SetEmail(email);
+                return;
+            }
+            Console.WriteLine("Digite um e-mail válido!");
         }
-        private void SetEmail()
-        {
-            Console.Write("Digite o email do author: ");
-            Email = Console.ReadLine();
-        }
-        public string GetName()
-        {
-            return Nome;
-        }
-        public string GetEmail()
-        {
-            return Email;
-        }
-        public void AddTask()
-        {
-            AssignedTasks++;
-        }
-        public int GetAssignedTasks()
-        {
-            return this.AssignedTasks;
-        }
-        
-        
-        
+    }
+    public void CreateAuthor() {
+        RegisterName();
+        RegisterEmail();
+    }
+    public void AddTask() {
+        AssignedTasks++;
+    }
+    public void Info() {
+        Console.WriteLine($"Nome: {GetName()} - Email: {GetEmail()} - Tarefas Atribuidas: {GetAssignedTasks()}");
+    }
+    public void SetName(string name) {
+        Name = name;
+    }
+    public void SetEmail(string email) {
+        Email = email;
+    }
+    public string GetName() {
+        return this.Name;
+    }
+    public string GetEmail() {
+        return this.Email;
+    }
+    public int GetAssignedTasks() {
+        return this.AssignedTasks;
     }
 }
